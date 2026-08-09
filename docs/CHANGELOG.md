@@ -26,3 +26,11 @@ Why:  Scope item 0 — the password page is the only page the public can current
       it is the first thing to style. The button change was needed because Dawn positions
       `.field__button` absolutely inside the input as an icon, which cannot carry a
       visible label.
+
+## 2026-08-09 — Coming-soon page copy revised
+What: Description line now names the paper and where prints ship from. The parent-site
+      link reads "← Back to tombannerman.com", with the arrow leading and its hover nudge
+      reversed to match. Added the parent site's colophon to the password footer:
+      `tombannerman.com · Built on the Gold Coast · First principles, always.`
+Why:  Revised copy from the owner. The footer line brings the two footers into parity,
+      which the first pass had deferred.
