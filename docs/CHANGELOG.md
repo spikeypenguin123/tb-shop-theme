@@ -46,3 +46,15 @@ Why:  `sections/email-signup-banner.liquid` pulls in four Dawn stylesheets from 
       to the form, so its `gap` was dropped and the field and button sat flush;
       and the input carried two borders on desktop. Found by rendering the page in
       Chromium from the theme source.
+
+## 2026-08-09 — Palette applied to the whole storefront, not just the password page
+What: `layout/theme.liquid` now loads `assets/tb-tokens.css` and the site's three
+      typefaces. All five of Dawn's colour schemes are mapped to the parent site's
+      palette, not just scheme-1: paper, raised paper, ink, the dark simulator panel,
+      and violet. Added `--tb-panel*` tokens for the dark schemes. Heading tracking and
+      `::selection` now apply site-wide; body sizing and link colour stay scoped to the
+      password page.
+Why:  `tb-tokens.css` was only ever loaded by `layout/password.liquid`, so every real
+      storefront page still rendered in stock Dawn `#FFFFFF` — reported as painfully
+      bright. Contrast was measured for every scheme; all pairings clear WCAG AA except
+      links on scheme-2 at 4.49:1, kept for link-colour consistency.

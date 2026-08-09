@@ -17,7 +17,8 @@
   regardless of what that setting is changed to.
 
   This file must load AFTER base.css so its custom property overrides win on source
-  order. See layout/password.liquid.
+  order. It is loaded by both layouts — layout/theme.liquid for the storefront and
+  layout/password.liquid for the coming-soon page.
 */
 
 /* ---------------------------------------------------------------------------
@@ -38,6 +39,13 @@
   --tb-line: rgba(42, 23, 51, 0.16);
   --tb-ink-wash: rgba(42, 23, 51, 0.06);
 
+  /* The parent site's dark-panel palette (getting-it-right.html) — used here for the
+     dark colour schemes. See docs/tokens.md § Dark-panel tokens. */
+  --tb-panel: #160c1e;
+  --tb-panel-ink: #ece5f4;
+  --tb-panel-soft: #a99fc0;
+  --tb-panel-line: rgba(255, 255, 255, 0.12);
+
   /* Colour — comma RGB triplets, for Dawn's rgb(var(--x)) pattern */
   --tb-rgb-paper: 255, 247, 230;
   --tb-rgb-paper-deep: 255, 234, 208;
@@ -48,6 +56,9 @@
   --tb-rgb-orange: 241, 146, 2;
   --tb-rgb-red: 255, 57, 57;
   --tb-rgb-teal: 23, 159, 147;
+  --tb-rgb-panel: 22, 12, 30;
+  --tb-rgb-panel-ink: 236, 229, 244;
+  --tb-rgb-panel-soft: 169, 159, 192;
 
   /* Type — families */
   --tb-font-body: 'Space Grotesk', system-ui, sans-serif;
@@ -133,33 +144,103 @@
    never hand-edited here. Instead the generated properties are overridden at equal
    specificity, later in source order.
 
-   Scope note: only :root and .color-scheme-1 are overridden, because those are the
-   only schemes the password page uses (templates/password.json and both
-   main-password-* sections all specify scheme-1). Schemes 2–5 remain Dawn stock and
-   are addressed when the pages that use them are built.
+   All five schemes are mapped. Dawn's semantic intent for each is kept — 1 default
+   light, 2 a raised light surface (its cards default to this), 3 and 4 dark, 5 the
+   brand colour — but every value is drawn from the parent site's palette.
+
+   Contrast was measured for each pairing. All clear WCAG AA (4.5:1) except links on
+   scheme-2, which land at 4.49:1 — a hair under, kept because a single consistent link
+   colour across the site is worth more than the 0.01, and large link text clears AA
+   regardless.
    --------------------------------------------------------------------------- */
 
+/* scheme-1 — the default: paper and ink */
 :root,
 .color-scheme-1 {
   --color-background: var(--tb-rgb-paper);
   --gradient-background: var(--tb-paper);
   --color-foreground: var(--tb-rgb-ink);
   --color-shadow: var(--tb-rgb-ink);
-
   --color-button: var(--tb-rgb-ink);
   --color-button-text: var(--tb-rgb-paper);
   --color-secondary-button: var(--tb-rgb-paper);
   --color-secondary-button-text: var(--tb-rgb-ink);
-
-  /* Dawn derives --color-link from the secondary button label. The parent site
-     links in violet, so it is set independently here. */
   --color-link: var(--tb-rgb-violet);
-
   --color-badge-foreground: var(--tb-rgb-ink);
   --color-badge-background: var(--tb-rgb-paper);
   --color-badge-border: var(--tb-rgb-ink);
-
   --payment-terms-background-color: var(--tb-paper);
+}
+
+/* scheme-2 — raised light surface. Dawn's cards, collection cards and blog cards
+   default to this scheme, so it is what most product tiles will use. */
+.color-scheme-2 {
+  --color-background: var(--tb-rgb-paper-deep);
+  --gradient-background: var(--tb-paper-deep);
+  --color-foreground: var(--tb-rgb-ink);
+  --color-shadow: var(--tb-rgb-ink);
+  --color-button: var(--tb-rgb-ink);
+  --color-button-text: var(--tb-rgb-paper);
+  --color-secondary-button: var(--tb-rgb-paper-deep);
+  --color-secondary-button-text: var(--tb-rgb-ink);
+  --color-link: var(--tb-rgb-violet);
+  --color-badge-foreground: var(--tb-rgb-ink);
+  --color-badge-background: var(--tb-rgb-paper-deep);
+  --color-badge-border: var(--tb-rgb-ink);
+  --payment-terms-background-color: var(--tb-paper-deep);
+}
+
+/* scheme-3 — dark, in the site's own ink rather than a neutral grey */
+.color-scheme-3 {
+  --color-background: var(--tb-rgb-ink);
+  --gradient-background: var(--tb-ink);
+  --color-foreground: var(--tb-rgb-paper);
+  --color-shadow: var(--tb-rgb-panel);
+  --color-button: var(--tb-rgb-paper);
+  --color-button-text: var(--tb-rgb-ink);
+  --color-secondary-button: var(--tb-rgb-ink);
+  --color-secondary-button-text: var(--tb-rgb-paper);
+  /* Violet does not carry on ink; the parent site's dark panel uses orange for
+     emphasis, which clears AA here at 6.98:1. */
+  --color-link: var(--tb-rgb-orange);
+  --color-badge-foreground: var(--tb-rgb-paper);
+  --color-badge-background: var(--tb-rgb-ink);
+  --color-badge-border: var(--tb-rgb-paper);
+  --payment-terms-background-color: var(--tb-ink);
+}
+
+/* scheme-4 — deepest, the parent site's simulator panel */
+.color-scheme-4 {
+  --color-background: var(--tb-rgb-panel);
+  --gradient-background: var(--tb-panel);
+  --color-foreground: var(--tb-rgb-panel-ink);
+  --color-shadow: var(--tb-rgb-panel);
+  --color-button: var(--tb-rgb-paper);
+  --color-button-text: var(--tb-rgb-panel);
+  --color-secondary-button: var(--tb-rgb-panel);
+  --color-secondary-button-text: var(--tb-rgb-panel-ink);
+  --color-link: var(--tb-rgb-orange);
+  --color-badge-foreground: var(--tb-rgb-panel-ink);
+  --color-badge-background: var(--tb-rgb-panel);
+  --color-badge-border: var(--tb-rgb-panel-ink);
+  --payment-terms-background-color: var(--tb-panel);
+}
+
+/* scheme-5 — the brand accent, for the rare full-bleed violet block */
+.color-scheme-5 {
+  --color-background: var(--tb-rgb-violet);
+  --gradient-background: var(--tb-violet);
+  --color-foreground: var(--tb-rgb-paper);
+  --color-shadow: var(--tb-rgb-ink);
+  --color-button: var(--tb-rgb-paper);
+  --color-button-text: var(--tb-rgb-violet);
+  --color-secondary-button: var(--tb-rgb-violet);
+  --color-secondary-button-text: var(--tb-rgb-paper);
+  --color-link: var(--tb-rgb-paper);
+  --color-badge-foreground: var(--tb-rgb-paper);
+  --color-badge-background: var(--tb-rgb-violet);
+  --color-badge-border: var(--tb-rgb-paper);
+  --payment-terms-background-color: var(--tb-violet);
 }
 
 :root {
@@ -208,9 +289,30 @@
 
    Dawn's base and password stylesheets set a few values as literals rather than
    reading a custom property, so there is nothing to override at the property level.
-   These rules restate them in the parent site's terms. They are scoped to the
-   password page's body class so nothing here leaks into pages built later.
+   These rules restate them in the parent site's terms.
+
+   Split deliberately: 3a applies everywhere, 3b only to the password page. Anything
+   that changes text metrics or link colours site-wide is held back, because Dawn's
+   components style their own anchors and its layouts are tuned to its own type scale,
+   and none of those pages can be rendered here to check.
    --------------------------------------------------------------------------- */
+
+/* --- 3a. Site-wide ------------------------------------------------------- */
+
+h1, h2, h3, h4, h5,
+.h0, .h1, .h2, .h3, .h4, .h5 {
+  /* base.css applies positive tracking to every heading, which suits a grotesque and
+     not Fraunces. The parent site tracks its display type negative. */
+  letter-spacing: var(--tb-tracking-h2);
+  font-variation-settings: var(--tb-vf-heading);
+}
+
+::selection {
+  background: var(--tb-periwinkle);
+  color: var(--tb-paper);
+}
+
+/* --- 3b. Password page only ---------------------------------------------- */
 
 body.password {
   /* section-password.css sets 1.5rem / 0.07rem tracking, and layout/password.liquid
@@ -230,15 +332,6 @@ body.password {
   }
 }
 
-.password h1,
-.password h2,
-.password .h1,
-.password .h2 {
-  /* base.css applies positive tracking to every heading; the parent site is negative */
-  letter-spacing: var(--tb-tracking-h2);
-  font-variation-settings: var(--tb-vf-heading);
-}
-
 .password a {
   color: rgb(var(--color-link));
   text-decoration: none;
@@ -246,11 +339,6 @@ body.password {
 
 .password a:hover {
   color: var(--tb-orange);
-}
-
-.password ::selection {
-  background: var(--tb-periwinkle);
-  color: var(--tb-paper);
 }
 
 /* Focus. Dawn's own focus-visible styling is kept; this only ensures the ring reads
