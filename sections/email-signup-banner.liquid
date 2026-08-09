@@ -99,17 +99,6 @@
                     <label class="field__label" for="NewsletterForm--{{ section.id }}">
                       {{ 'newsletter.label' | t }}
                     </label>
-                    <button
-                      type="submit"
-                      class="newsletter-form__button field__button"
-                      name="commit"
-                      id="Subscribe"
-                      aria-label="{{ 'newsletter.button_label' | t }}"
-                    >
-                      <span class="svg-wrapper">
-                        {{- 'icon-arrow.svg' | inline_asset_content -}}
-                      </span>
-                    </button>
                   </div>
                   {%- if form.errors -%}
                     <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
@@ -121,6 +110,14 @@
                     </small>
                   {%- endif -%}
                 </div>
+                {% comment %}
+                  Moved out of .field and stripped of .field__button: Dawn positions that
+                  class absolutely inside the input as an icon-only arrow, which cannot
+                  carry a visible label. The brief calls for a button reading "Notify me".
+                {% endcomment %}
+                <button type="submit" class="newsletter-form__button tb-button" name="commit" id="Subscribe">
+                  {{ 'general.password_page.notify_button' | t }}
+                </button>
                 {%- if form.posted_successfully? -%}
                   <h3
                     class="newsletter-form__message newsletter-form__message--success form__message"
@@ -138,6 +135,15 @@
             </div>
         {%- endcase -%}
       {%- endfor -%}
+      {% comment %}
+        Link back to the parent site. Hardcoded rather than made a block: this section is
+        scoped to the password template, and the destination is fixed for the life of the
+        holding page.
+      {% endcomment %}
+      <a class="tb-backlink" href="https://tombannerman.com">
+        {{- 'general.password_page.parent_site_link' | t }}
+        <span class="tb-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </div>
   </div>
 </div>
