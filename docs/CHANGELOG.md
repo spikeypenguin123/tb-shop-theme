@@ -34,3 +34,27 @@ What: Description line now names the paper and where prints ship from. The paren
       `tombannerman.com · Built on the Gold Coast · First principles, always.`
 Why:  Revised copy from the owner. The footer line brings the two footers into parity,
       which the first pass had deferred.
+
+## 2026-08-09 — Fixed the coming-soon CTA, which was invisible on mobile
+What: Raised specificity on the `Notify me` button, the email form layout and the input
+      ring reset in `assets/tb-password.css`, and widened the button's focus-ring offset.
+Why:  `sections/email-signup-banner.liquid` pulls in four Dawn stylesheets from the body,
+      so they load AFTER `tb-password.css` and win every equal-specificity tie. Three
+      things were broken as a result: `component-newsletter.css` reset the button to
+      `background-color: inherit`, leaving it unfilled — and on mobile, paper text on
+      paper, so the primary call to action was invisible; `display: flex` never applied
+      to the form, so its `gap` was dropped and the field and button sat flush;
+      and the input carried two borders on desktop. Found by rendering the page in
+      Chromium from the theme source.
+
+## 2026-08-09 — Palette applied to the whole storefront, not just the password page
+What: `layout/theme.liquid` now loads `assets/tb-tokens.css` and the site's three
+      typefaces. All five of Dawn's colour schemes are mapped to the parent site's
+      palette, not just scheme-1: paper, raised paper, ink, the dark simulator panel,
+      and violet. Added `--tb-panel*` tokens for the dark schemes. Heading tracking and
+      `::selection` now apply site-wide; body sizing and link colour stay scoped to the
+      password page.
+Why:  `tb-tokens.css` was only ever loaded by `layout/password.liquid`, so every real
+      storefront page still rendered in stock Dawn `#FFFFFF` — reported as painfully
+      bright. Contrast was measured for every scheme; all pairings clear WCAG AA except
+      links on scheme-2 at 4.49:1, kept for link-colour consistency.
