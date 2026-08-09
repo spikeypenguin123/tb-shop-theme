@@ -3,6 +3,8 @@
     "password_page": {
       "login_form_heading": "Enter store using password:",
       "login_password_button": "Enter using password",
+      "notify_button": "Notify me",
+      "parent_site_link": "tombannerman.com",
       "login_form_password_label": "Password",
       "login_form_password_placeholder": "Your password",
       "login_form_error": "Wrong password!",

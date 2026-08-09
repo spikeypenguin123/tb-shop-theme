@@ -1,0 +1,261 @@
+/*
+  tb-tokens.css — the single source of truth for this theme's visual values.
+
+  Every value here is measured from tombannerman.com and recorded in docs/tokens.md.
+  Nothing else in this theme's CSS may hardcode a colour, font name or spacing value:
+  use the custom properties defined below.
+
+  Structure:
+    1. --tb-* tokens ............ the parent site's values, verbatim
+    2. Dawn overrides ........... those tokens mapped onto Dawn's own custom properties
+    3. Element-level parity ..... the handful of Dawn base rules that carry values
+                                  rather than reading a custom property
+
+  Why px and not rem: Dawn sets `html { font-size: calc(var(--font-body-scale) * 62.5%) }`,
+  so its rem unit is 10px only while the admin's "body scale" setting stays at 100. The
+  parent site is px throughout. Using px here means the two sites stay visually identical
+  regardless of what that setting is changed to.
+
+  This file must load AFTER base.css so its custom property overrides win on source
+  order. See layout/password.liquid.
+*/
+
+/* ---------------------------------------------------------------------------
+   1. Tokens — measured from tombannerman.com (docs/tokens.md)
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Colour — hex, for direct use */
+  --tb-paper: #fff7e6;
+  --tb-paper-deep: #ffead0;
+  --tb-ink: #2a1733;
+  --tb-ink-soft: #5a4660;
+  --tb-violet: #922aff;
+  --tb-periwinkle: #726bf3;
+  --tb-orange: #f19202;
+  --tb-red: #ff3939;
+  --tb-teal: #179f93;
+  --tb-line: rgba(42, 23, 51, 0.16);
+  --tb-ink-wash: rgba(42, 23, 51, 0.06);
+
+  /* Colour — comma RGB triplets, for Dawn's rgb(var(--x)) pattern */
+  --tb-rgb-paper: 255, 247, 230;
+  --tb-rgb-paper-deep: 255, 234, 208;
+  --tb-rgb-ink: 42, 23, 51;
+  --tb-rgb-ink-soft: 90, 70, 96;
+  --tb-rgb-violet: 146, 42, 255;
+  --tb-rgb-periwinkle: 114, 107, 243;
+  --tb-rgb-orange: 241, 146, 2;
+  --tb-rgb-red: 255, 57, 57;
+  --tb-rgb-teal: 23, 159, 147;
+
+  /* Type — families */
+  --tb-font-body: 'Space Grotesk', system-ui, sans-serif;
+  --tb-font-display: 'Fraunces', serif;
+  --tb-font-mono: 'Space Mono', monospace;
+
+  /* Type — Fraunces variation settings, per role */
+  --tb-vf-display: 'opsz' 144, 'SOFT' 40, 'WONK' 1;
+  --tb-vf-heading: 'opsz' 80, 'SOFT' 30, 'WONK' 0;
+  --tb-vf-subhead: 'opsz' 40, 'SOFT' 30;
+  --tb-vf-mark: 'opsz' 30, 'SOFT' 40, 'WONK' 1;
+
+  /* Type — sizes */
+  --tb-size-base: 17px;
+  --tb-size-micro: 11px;
+  --tb-size-label: 12px;
+  --tb-size-label-lg: 13px;
+  --tb-size-small: 15px;
+  --tb-size-lead: 18px;
+  --tb-size-mark: 19px;
+  --tb-size-h2: clamp(26px, 3.6vw, 36px);
+  --tb-size-h1: clamp(38px, 7vw, 62px);
+
+  /* Type — weights */
+  --tb-weight-body: 400;
+  --tb-weight-medium: 500;
+  --tb-weight-semibold: 600;
+  --tb-weight-bold: 700;
+
+  /* Type — line heights */
+  --tb-leading-body: 1.65;
+  --tb-leading-h1: 0.95;
+  --tb-leading-h2: 1.05;
+
+  /* Type — letter spacing */
+  --tb-tracking-h1: -0.025em;
+  --tb-tracking-h2: -0.01em;
+  --tb-tracking-mark: 0.3px;
+  --tb-tracking-label: 0.5px;
+  --tb-tracking-label-wide: 1px;
+  --tb-tracking-eyebrow: 3px;
+
+  /* Spacing — the parent site has no scale; these are its measured values,
+     named for the role each one plays. See docs/tokens.md § Spacing. */
+  --tb-space-gutter: 24px;      /* .wrap horizontal padding */
+  --tb-space-nav-y: 13px;       /* .nav-in vertical padding */
+  --tb-space-section: 54px;     /* section padding, main variant */
+  --tb-space-hero-top: 46px;    /* .home-hero top padding */
+  --tb-space-2xs: 6px;
+  --tb-space-xs: 9px;
+  --tb-space-sm: 14px;
+  --tb-space-md: 18px;
+  --tb-space-lg: 22px;
+  --tb-space-xl: 30px;
+
+  /* Layout */
+  --tb-width: 760px;            /* --w  */
+  --tb-width-wide: 1080px;      /* --w-wide */
+  --tb-measure: 54ch;           /* .bio p */
+  --tb-measure-field: 32ch;     /* email input, sized to the address it holds */
+
+  /* Radius */
+  --tb-radius-card: 16px;
+  --tb-radius-pill: 30px;
+  --tb-radius-btn: 40px;
+
+  /* Borders */
+  --tb-border-hairline: 1px;
+  --tb-border-structural: 1.5px;
+
+  /* Motion — the parent site's hover offsets, measured */
+  --tb-motion: 0.2s;
+  --tb-lift: -2px;   /* .links a:hover / .btn:hover translateY */
+  --tb-nudge: 4px;   /* .explore li:hover .arrow translateX */
+}
+
+/* ---------------------------------------------------------------------------
+   2. Dawn overrides
+
+   Dawn generates its colour and type custom properties inline in
+   layout/password.liquid from config/settings_data.json. That file is
+   remote-authoritative — the owner edits it through the Shopify admin — so it is
+   never hand-edited here. Instead the generated properties are overridden at equal
+   specificity, later in source order.
+
+   Scope note: only :root and .color-scheme-1 are overridden, because those are the
+   only schemes the password page uses (templates/password.json and both
+   main-password-* sections all specify scheme-1). Schemes 2–5 remain Dawn stock and
+   are addressed when the pages that use them are built.
+   --------------------------------------------------------------------------- */
+
+:root,
+.color-scheme-1 {
+  --color-background: var(--tb-rgb-paper);
+  --gradient-background: var(--tb-paper);
+  --color-foreground: var(--tb-rgb-ink);
+  --color-shadow: var(--tb-rgb-ink);
+
+  --color-button: var(--tb-rgb-ink);
+  --color-button-text: var(--tb-rgb-paper);
+  --color-secondary-button: var(--tb-rgb-paper);
+  --color-secondary-button-text: var(--tb-rgb-ink);
+
+  /* Dawn derives --color-link from the secondary button label. The parent site
+     links in violet, so it is set independently here. */
+  --color-link: var(--tb-rgb-violet);
+
+  --color-badge-foreground: var(--tb-rgb-ink);
+  --color-badge-background: var(--tb-rgb-paper);
+  --color-badge-border: var(--tb-rgb-ink);
+
+  --payment-terms-background-color: var(--tb-paper);
+}
+
+:root {
+  /* Type */
+  --font-body-family: var(--tb-font-body);
+  --font-body-style: normal;
+  --font-body-weight: var(--tb-weight-body);
+  --font-body-weight-bold: var(--tb-weight-bold);
+
+  --font-heading-family: var(--tb-font-display);
+  --font-heading-style: normal;
+  --font-heading-weight: var(--tb-weight-semibold);
+
+  /* Layout */
+  --page-width: var(--tb-width-wide);
+  --page-width-margin: 0rem;
+
+  /* Controls — the parent site's pill geometry and 1.5px structural borders */
+  --buttons-radius: var(--tb-radius-btn);
+  --buttons-radius-outset: calc(var(--tb-radius-btn) + var(--tb-border-structural));
+  --buttons-border-width: var(--tb-border-structural);
+  --buttons-border-opacity: 1;
+  --buttons-shadow-opacity: 0;
+  --buttons-shadow-visible: 0;
+
+  --inputs-radius: var(--tb-radius-pill);
+  --inputs-radius-outset: calc(var(--tb-radius-pill) + var(--tb-border-structural));
+  --inputs-border-width: var(--tb-border-structural);
+  --inputs-border-opacity: 1;
+  --inputs-shadow-opacity: 0;
+
+  --text-boxes-radius: var(--tb-radius-card);
+  --text-boxes-border-width: 0px;
+  --text-boxes-border-opacity: 0;
+  --text-boxes-shadow-opacity: 0;
+  --text-boxes-shadow-visible: 0;
+
+  --media-radius: var(--tb-radius-card);
+  --media-border-width: 0px;
+  --media-shadow-opacity: 0;
+  --media-shadow-visible: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   3. Element-level parity
+
+   Dawn's base and password stylesheets set a few values as literals rather than
+   reading a custom property, so there is nothing to override at the property level.
+   These rules restate them in the parent site's terms. They are scoped to the
+   password page's body class so nothing here leaks into pages built later.
+   --------------------------------------------------------------------------- */
+
+body.password {
+  /* section-password.css sets 1.5rem / 0.07rem tracking, and layout/password.liquid
+     sets the body colour to 75% opacity. The parent site is 17px, no tracking,
+     full-strength ink. */
+  font-size: var(--tb-size-base);
+  letter-spacing: normal;
+  line-height: var(--tb-leading-body);
+  color: rgb(var(--color-foreground));
+  -webkit-font-smoothing: antialiased;
+}
+
+@media screen and (min-width: 750px) {
+  body.password {
+    font-size: var(--tb-size-base);
+    line-height: var(--tb-leading-body);
+  }
+}
+
+.password h1,
+.password h2,
+.password .h1,
+.password .h2 {
+  /* base.css applies positive tracking to every heading; the parent site is negative */
+  letter-spacing: var(--tb-tracking-h2);
+  font-variation-settings: var(--tb-vf-heading);
+}
+
+.password a {
+  color: rgb(var(--color-link));
+  text-decoration: none;
+}
+
+.password a:hover {
+  color: var(--tb-orange);
+}
+
+.password ::selection {
+  background: var(--tb-periwinkle);
+  color: var(--tb-paper);
+}
+
+/* Focus. Dawn's own focus-visible styling is kept; this only ensures the ring reads
+   against paper rather than Dawn's stock white. */
+.password :focus-visible {
+  outline: var(--tb-border-structural) solid rgb(var(--color-foreground));
+  outline-offset: var(--tb-border-structural);
+}
