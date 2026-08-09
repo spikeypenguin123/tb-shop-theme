@@ -299,6 +299,11 @@
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
+        {% comment %}
+          The parent site's colophon, so both footers read the same. Plain text —
+          tombannerman.com is linked from the nav, not here.
+        {% endcomment %}
+        <p class="tb-colophon">{{ 'general.password_page.colophon' | t }}</p>
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
