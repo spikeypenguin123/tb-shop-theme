@@ -312,6 +312,33 @@ h1, h2, h3, h4, h5,
   color: var(--tb-paper);
 }
 
+/* The wordmark, used by the storefront header and the coming-soon header. Colour comes
+   from the active scheme so it stays legible on a dark header too. */
+.tb-mark {
+  font-family: var(--tb-font-display);
+  font-weight: var(--tb-weight-semibold);
+  font-variation-settings: var(--tb-vf-mark);
+  letter-spacing: var(--tb-tracking-mark);
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+}
+
+.tb-mark b {
+  color: var(--tb-violet);
+  font-weight: inherit;
+}
+
+/* The colophon, used by both footers. */
+.tb-colophon {
+  margin: 0 0 var(--tb-space-2xs);
+  font-family: var(--tb-font-mono);
+  font-size: var(--tb-size-micro);
+  letter-spacing: var(--tb-tracking-label);
+  line-height: var(--tb-leading-body);
+  color: rgba(var(--color-foreground), 0.75);
+  text-wrap: balance;
+}
+
 /* --- 3b. Password page only ---------------------------------------------- */
 
 body.password {

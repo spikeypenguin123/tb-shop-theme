@@ -172,7 +172,12 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          {% comment %}
+            The parent site's wordmark, so the two read as one. Rendered in place of
+            shop.name ("Tom Bannerman's Store") — see docs/tokens.md § Typography
+            (.mark). A logo uploaded in the admin still takes precedence, above.
+          {% endcomment %}
+          <span class="h2 tb-mark">Tom<b>.</b>Bannerman</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -215,7 +220,12 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          {% comment %}
+            The parent site's wordmark, so the two read as one. Rendered in place of
+            shop.name ("Tom Bannerman's Store") — see docs/tokens.md § Typography
+            (.mark). A logo uploaded in the admin still takes precedence, above.
+          {% endcomment %}
+          <span class="h2 tb-mark">Tom<b>.</b>Bannerman</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}

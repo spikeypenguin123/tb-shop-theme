@@ -58,3 +58,17 @@ Why:  `tb-tokens.css` was only ever loaded by `layout/password.liquid`, so every
       storefront page still rendered in stock Dawn `#FFFFFF` — reported as painfully
       bright. Contrast was measured for every scheme; all pairings clear WCAG AA except
       links on scheme-2 at 4.49:1, kept for link-colour consistency.
+
+## 2026-08-09 — Storefront content and chrome aligned with the parent site
+What: Storefront header renders the `Tom.Bannerman` wordmark instead of the Shopify store
+      name; storefront footer carries the colophon. Homepage replaced: Dawn's demo hero
+      is gone and the homepage opens directly on the product grid, titled "All prints"
+      at 3:2 (`image_ratio: adapt`), one column on mobile. No intro section — the owner
+      asked for the prints to be the first thing on the page. Announcement bar now
+      states the paper and where prints ship from. Footer newsletter heading is "New
+      prints, occasionally". `.tb-mark` and `.tb-colophon` moved into `tb-tokens.css` so
+      both layouts share one definition.
+Why:  The storefront was still Dawn's demo — a stock illustration hero, "Welcome to our
+      store", "Join our email list / Get exclusive deals and early access to new
+      products". That last one is the marketing register the brief rules out, and none of
+      it read as a continuation of tombannerman.com.
