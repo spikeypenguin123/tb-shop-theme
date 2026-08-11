@@ -72,3 +72,12 @@ Why:  The storefront was still Dawn's demo — a stock illustration hero, "Welco
       store", "Join our email list / Get exclusive deals and early access to new
       products". That last one is the marketing register the brief rules out, and none of
       it read as a continuation of tombannerman.com.
+
+## 2026-08-09 — Wordmark no longer wraps in the storefront header
+What: `.header__heading-link .tb-mark` pins the wordmark to 19px, `white-space: nowrap`,
+      `word-break: normal`, and full-strength foreground colour.
+Why:  Dawn sets `word-break: break-word` on the header heading and sizes it as an `.h2`
+      (20px, 24px on desktop), which was breaking "Tom.Bannerman" mid-word into
+      "Tom.Bannerm / an" on a phone. It also renders the heading at 75% opacity. The
+      parent site's wordmark is a flat 19px at full strength and never wraps. Measured in
+      Chromium: 157px wide against a 181px centre column at phone width.
