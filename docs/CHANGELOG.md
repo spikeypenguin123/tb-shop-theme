@@ -92,3 +92,14 @@ Why:  Prodigi routes each order to whichever lab is closest to the customer, so 
       is reliably shipped from Australia and the old line was not true. The About section
       is the owner's request — a short first-person profile, placed after the prints so
       the work still leads.
+
+## 2026-08-13 — Portrait added to the About block
+What: New `sections/tb-about.liquid` + `assets/tb-about.css`, and `assets/tb-portrait.jpg`
+      (1000×1334, 261 KB, re-encoded from the owner's original 1762×2350). The homepage
+      `about` section switches from Dawn's `rich-text` to `tb-about`, carrying the same
+      copy across as heading / text / label / button blocks.
+Why:  Dawn's image sections take their image from an `image_picker`, which stores a
+      reference to a file uploaded in the Shopify admin — unreachable from the repo. A
+      theme asset referenced with `asset_url` is the only way to version the portrait
+      alongside the copy. Trade-off: no Shopify CDN srcset, so the file is pre-sized to
+      1000px, which covers the ~500px it renders at on a 2x display.
