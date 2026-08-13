@@ -27,9 +27,52 @@
         "padding_top": 44,
         "padding_bottom": 52
       }
+    },
+    "about": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "About",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>I'm Tom Bannerman — a young aerospace engineer on the Gold Coast. I build launch vehicles for a living and take photographs the rest of the time.</p><p>Most of these were made underwater. Diving puts you next to animals that have no particular interest in you, in places most people never get to stand. The encounters are brief, and a photograph is the only part of one you get to keep.</p><p>These are the frames worth printing.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "More of my work",
+            "button_link": "https://tombannerman.com",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-2",
+        "full_width": false,
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
-    "featured_collection"
+    "featured_collection",
+    "about"
   ]
 }
