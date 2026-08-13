@@ -72,3 +72,23 @@ Why:  The storefront was still Dawn's demo — a stock illustration hero, "Welco
       store", "Join our email list / Get exclusive deals and early access to new
       products". That last one is the marketing register the brief rules out, and none of
       it read as a continuation of tombannerman.com.
+
+## 2026-08-09 — Wordmark no longer wraps in the storefront header
+What: `.header__heading-link .tb-mark` pins the wordmark to 19px, `white-space: nowrap`,
+      `word-break: normal`, and full-strength foreground colour.
+Why:  Dawn sets `word-break: break-word` on the header heading and sizes it as an `.h2`
+      (20px, 24px on desktop), which was breaking "Tom.Bannerman" mid-word into
+      "Tom.Bannerm / an" on a phone. It also renders the heading at 75% opacity. The
+      parent site's wordmark is a flat 19px at full strength and never wraps. Measured in
+      Chromium: 157px wide against a 181px centre column at phone width.
+
+## 2026-08-09 — About section added; the Australia claim removed
+What: Announcement bar changed from "Printed on Hahnemühle Photo Rag · Shipped from
+      Australia" to "Fine-art prints, shipped worldwide". Added an `about` rich-text
+      section to the homepage, below the grid, on scheme-2 with a link out to
+      tombannerman.com. Bio later rewritten to the owner's own copy, adding EARTH and
+      TRAVEL collection notes as uppercase caption labels between the paragraphs.
+Why:  Prodigi routes each order to whichever lab is closest to the customer, so nothing
+      is reliably shipped from Australia and the old line was not true. The About section
+      is the owner's request — a short first-person profile, placed after the prints so
+      the work still leads.

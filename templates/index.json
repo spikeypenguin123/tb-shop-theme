@@ -27,9 +27,84 @@
         "padding_top": 44,
         "padding_bottom": 52
       }
+    },
+    "about": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "About",
+            "heading_size": "h2"
+          }
+        },
+        "intro": {
+          "type": "text",
+          "settings": {
+            "text": "<p>I'm Tom Bannerman, an aerospace engineer on the Gold Coast. I love technology, creativity and the water — which is why so much of this work is underwater.</p><p>I shoot digital below the surface and 35mm film above it. Every print buys more time in the water and more film through the camera.</p>"
+          }
+        },
+        "earth_label": {
+          "type": "caption",
+          "settings": {
+            "caption": "EARTH collection",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "earth_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>In the ocean the encounters are brief. Often it's a single moment where it's possible to capture the true magnificence of Mother Earth's beauty — one pass, one turn of the light. Most of the time you miss it. The EARTH collection is the frames I didn't: my best work, and the ones worth printing.</p>"
+          }
+        },
+        "travel_label": {
+          "type": "caption",
+          "settings": {
+            "caption": "TRAVEL collection",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "travel_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>An assortment of 35mm film photographs captured while backpacking around the globe. Shot slowly, on a limited number of frames, in places I'll likely never stand again.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "More of my work",
+            "button_link": "https://tombannerman.com",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "intro",
+        "earth_label",
+        "earth_text",
+        "travel_label",
+        "travel_text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-2",
+        "full_width": false,
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
-    "featured_collection"
+    "featured_collection",
+    "about"
   ]
 }

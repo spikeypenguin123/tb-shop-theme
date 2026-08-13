@@ -328,6 +328,23 @@ h1, h2, h3, h4, h5,
   font-weight: inherit;
 }
 
+/* Dawn's storefront header does two things to the wordmark that the parent site does
+   not: `.header__heading-link` sets `word-break: break-word`, so a long name splits
+   mid-word rather than staying whole, and `.h2` sizes it at 2rem/2.4rem, which is wide
+   enough to trigger that break in a narrow header — "Tom.Bannerman" was landing as
+   "Tom.Bannerm / an". `.header__heading-link .h2` also drops it to 75% opacity.
+
+   The parent site sets its wordmark at a flat 19px, full-strength, and never wraps it.
+   Matching that fixes all three. Specificity is (0,2,0) to tie with Dawn's rules, which
+   this file wins on source order. */
+.header__heading-link .tb-mark {
+  font-size: var(--tb-size-mark);
+  line-height: var(--tb-leading-body);
+  white-space: nowrap;
+  word-break: normal;
+  color: rgb(var(--color-foreground));
+}
+
 /* The colophon, used by both footers. */
 .tb-colophon {
   margin: 0 0 var(--tb-space-2xs);
