@@ -86,7 +86,8 @@ Why:  Dawn sets `word-break: break-word` on the header heading and sizes it as a
 What: Announcement bar changed from "Printed on Hahnemühle Photo Rag · Shipped from
       Australia" to "Fine-art prints, shipped worldwide". Added an `about` rich-text
       section to the homepage, below the grid, on scheme-2 with a link out to
-      tombannerman.com.
+      tombannerman.com. Bio later rewritten to the owner's own copy, adding EARTH and
+      TRAVEL collection notes as uppercase caption labels between the paragraphs.
 Why:  Prodigi routes each order to whichever lab is closest to the customer, so nothing
       is reliably shipped from Australia and the old line was not true. The About section
       is the owner's request — a short first-person profile, placed after the prints so

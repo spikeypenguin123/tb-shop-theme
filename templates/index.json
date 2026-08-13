@@ -38,10 +38,38 @@
             "heading_size": "h2"
           }
         },
-        "text": {
+        "intro": {
           "type": "text",
           "settings": {
-            "text": "<p>I'm Tom Bannerman — a young aerospace engineer on the Gold Coast. I build launch vehicles for a living and take photographs the rest of the time.</p><p>Most of these were made underwater. Diving puts you next to animals that have no particular interest in you, in places most people never get to stand. The encounters are brief, and a photograph is the only part of one you get to keep.</p><p>These are the frames worth printing.</p>"
+            "text": "<p>I'm Tom Bannerman, an aerospace engineer on the Gold Coast. I love technology, creativity and the water — which is why so much of this work is underwater.</p><p>I shoot digital below the surface and 35mm film above it. Every print buys more time in the water and more film through the camera.</p>"
+          }
+        },
+        "earth_label": {
+          "type": "caption",
+          "settings": {
+            "caption": "EARTH collection",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "earth_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>In the ocean the encounters are brief. Often it's a single moment where it's possible to capture the true magnificence of Mother Earth's beauty — one pass, one turn of the light. Most of the time you miss it. The EARTH collection is the frames I didn't: my best work, and the ones worth printing.</p>"
+          }
+        },
+        "travel_label": {
+          "type": "caption",
+          "settings": {
+            "caption": "TRAVEL collection",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "travel_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>An assortment of 35mm film photographs captured while backpacking around the globe. Shot slowly, on a limited number of frames, in places I'll likely never stand again.</p>"
           }
         },
         "button": {
@@ -58,7 +86,11 @@
       },
       "block_order": [
         "heading",
-        "text",
+        "intro",
+        "earth_label",
+        "earth_text",
+        "travel_label",
+        "travel_text",
         "button"
       ],
       "settings": {
