@@ -29,13 +29,12 @@
       }
     },
     "about": {
-      "type": "rich-text",
+      "type": "tb-about",
       "blocks": {
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "About",
-            "heading_size": "h2"
+            "heading": "About"
           }
         },
         "intro": {
@@ -45,11 +44,9 @@
           }
         },
         "earth_label": {
-          "type": "caption",
+          "type": "label",
           "settings": {
-            "caption": "EARTH collection",
-            "text_style": "caption-with-letter-spacing",
-            "text_size": "medium"
+            "label": "EARTH collection"
           }
         },
         "earth_text": {
@@ -59,11 +56,9 @@
           }
         },
         "travel_label": {
-          "type": "caption",
+          "type": "label",
           "settings": {
-            "caption": "TRAVEL collection",
-            "text_style": "caption-with-letter-spacing",
-            "text_size": "medium"
+            "label": "TRAVEL collection"
           }
         },
         "travel_text": {
@@ -76,11 +71,7 @@
           "type": "button",
           "settings": {
             "button_label": "More of my work",
-            "button_link": "https://tombannerman.com",
-            "button_style_secondary": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_link": "https://tombannerman.com"
           }
         }
       },
@@ -94,10 +85,9 @@
         "button"
       ],
       "settings": {
-        "desktop_content_position": "left",
-        "content_alignment": "left",
         "color_scheme": "scheme-2",
-        "full_width": false,
+        "image_position": "image-left",
+        "image_alt": "Tom Bannerman standing on a ridge in the Dolomites with a film camera",
         "padding_top": 52,
         "padding_bottom": 52
       }

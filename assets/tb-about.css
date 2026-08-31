@@ -1,0 +1,137 @@
+/*
+  tb-about.css — the About block: portrait beside the bio.
+
+  Every value comes from a token in tb-tokens.css. These are all new class names, so
+  nothing here competes with Dawn and no specificity tricks are needed.
+*/
+
+.tb-about {
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+}
+
+.tb-about__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--tb-space-xl);
+  align-items: center;
+  padding-top: var(--tb-space-section);
+  padding-bottom: var(--tb-space-section);
+}
+
+@media screen and (min-width: 750px) {
+  .tb-about__inner {
+    /* portrait holds a third, the words take the rest */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: calc(var(--tb-space-xl) + var(--tb-space-md));
+  }
+
+  /* On a narrow screen the portrait always comes first, whatever the desktop order. */
+  .tb-about__inner--image-right .tb-about__media {
+    order: 2;
+  }
+}
+
+/* --- portrait ------------------------------------------------------------- */
+
+.tb-about__media {
+  margin: 0;
+}
+
+.tb-about__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* matches the file, so the space is held before the image arrives */
+  aspect-ratio: 1000 / 1334;
+  object-fit: cover;
+  border-radius: var(--tb-radius-card);
+  border: var(--tb-border-structural) solid rgb(var(--color-foreground));
+  /* the parent site's figure treatment: a hard offset shadow, no blur */
+  box-shadow: 5px 7px 0 var(--tb-line);
+  background: var(--tb-paper-deep);
+}
+
+/* --- words ---------------------------------------------------------------- */
+
+.tb-about__heading {
+  font-family: var(--tb-font-display);
+  font-weight: var(--tb-weight-semibold);
+  font-variation-settings: var(--tb-vf-heading);
+  font-size: var(--tb-size-h2);
+  line-height: var(--tb-leading-h2);
+  letter-spacing: var(--tb-tracking-h2);
+  color: rgb(var(--color-foreground));
+  margin: 0 0 var(--tb-space-md);
+}
+
+.tb-about__label {
+  font-family: var(--tb-font-mono);
+  font-size: var(--tb-size-label);
+  letter-spacing: var(--tb-tracking-label-wide);
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.75);
+  margin: var(--tb-space-xl) 0 var(--tb-space-2xs);
+}
+
+.tb-about__text {
+  font-family: var(--tb-font-body);
+  font-size: var(--tb-size-base);
+  line-height: var(--tb-leading-body);
+  color: rgb(var(--color-foreground));
+  max-width: var(--tb-measure);
+}
+
+.tb-about__text p {
+  margin: 0 0 var(--tb-space-md);
+}
+
+.tb-about__text p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- button --------------------------------------------------------------- */
+
+.tb-about__button {
+  display: inline-block;
+  margin-top: var(--tb-space-xl);
+  font-family: var(--tb-font-mono);
+  font-size: var(--tb-size-label-lg);
+  letter-spacing: var(--tb-tracking-label-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+  border: var(--tb-border-structural) solid rgb(var(--color-foreground));
+  padding: var(--tb-space-nav-y) var(--tb-space-lg);
+  border-radius: var(--tb-radius-btn);
+  transition: background-color var(--tb-motion), border-color var(--tb-motion),
+    transform var(--tb-motion);
+}
+
+.tb-about__button:hover {
+  background: var(--tb-violet);
+  border-color: var(--tb-violet);
+  color: var(--tb-paper);
+}
+
+.tb-about__button:focus-visible {
+  outline: var(--tb-border-structural) solid rgb(var(--color-foreground));
+  outline-offset: calc(var(--tb-border-structural) * 2);
+}
+
+@media (hover: hover) {
+  .tb-about__button:hover {
+    transform: translateY(var(--tb-lift));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tb-about__button {
+    transition: none;
+  }
+
+  .tb-about__button:hover {
+    transform: none;
+  }
+}
