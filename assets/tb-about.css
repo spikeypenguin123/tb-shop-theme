@@ -43,7 +43,7 @@
   width: 100%;
   height: auto;
   /* matches the file, so the space is held before the image arrives */
-  aspect-ratio: 1000 / 1334;
+  aspect-ratio: 720 / 960;
   object-fit: cover;
   border-radius: var(--tb-radius-card);
   border: var(--tb-border-structural) solid rgb(var(--color-foreground));

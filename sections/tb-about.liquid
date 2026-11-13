@@ -7,8 +7,10 @@
   controlled alongside the copy. `asset_url` is the only way to reach it.
 
   Trade-off, recorded honestly: a theme asset does not go through Shopify's image CDN, so
-  there is no automatic srcset. The file is pre-sized to 1000px wide, which covers the
-  ~500px it renders at on a 2x display. If the portrait is later uploaded through
+  there is no automatic srcset. The file is capped at 720px wide (720x960) — every photo
+  the shop and the parent site serve is a 720p preview, so the full-resolution original
+  is never reachable from the page source. It renders at ~500px, so a 2x display upsamples
+  slightly; that is the accepted cost. If the portrait is later uploaded through
   Settings → Files, this section should be replaced by Dawn's image-with-text to get
   responsive variants for free.
 {% endcomment %}
@@ -25,8 +27,8 @@
       <img
         src="{{ 'tb-portrait.jpg' | asset_url }}"
         alt="{{ section.settings.image_alt | escape }}"
-        width="1000"
-        height="1334"
+        width="720"
+        height="960"
         loading="lazy"
         decoding="async"
         class="tb-about__img"

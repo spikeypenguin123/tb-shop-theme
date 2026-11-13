@@ -103,3 +103,13 @@ Why:  Dawn's image sections take their image from an `image_picker`, which store
       theme asset referenced with `asset_url` is the only way to version the portrait
       alongside the copy. Trade-off: no Shopify CDN srcset, so the file is pre-sized to
       1000px, which covers the ~500px it renders at on a 2x display.
+
+## 2026-11-13 — Portrait capped at 720p
+What: `assets/tb-portrait.jpg` re-encoded from 1000×1334 to 720×960 (progressive JPEG,
+      q80, no metadata). `width`/`height` in `sections/tb-about.liquid` and the
+      `aspect-ratio` in `assets/tb-about.css` updated to match.
+Why:  Owner's rule: no photo served by the shop or tombannerman.com is larger than 720p,
+      so the full-resolution original cannot be pulled out with Inspect Element. The
+      same cap was applied to the parent site in tombannerman_website PR #17. Product
+      photos are not covered here — they are uploaded in the admin, not stored in the
+      theme, and Shopify's CDN serves the originally uploaded file.
